@@ -344,8 +344,9 @@ public class EditarDatos extends javax.swing.JPanel {
         
         try {
             String datosDelVehiculo = mapper.writeValueAsString(parametros);
-            HttpRequest request = HttpRequest.newBuilder().PUT(HttpRequest.BodyPublishers.ofString(datosDelVehiculo)).
-                    uri(URI.create(Url)).build();
+            HttpRequest request = HttpRequest.newBuilder().POST(HttpRequest.BodyPublishers
+                    .ofString(datosDelVehiculo)).uri(URI.create(Url)).build();
+            
             HttpResponse<String> response = cliente.send(request, HttpResponse.BodyHandlers.ofString());
             if(response.body().trim().equals("true")){
                 JOptionPane.showMessageDialog(null, "Vehículo registrado");
